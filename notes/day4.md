@@ -58,6 +58,7 @@ But... where did we specify the variables values? NOWHERE
 
 We can do that in several places in terraform:
 
+(THIS ONE TAKES PRECEDENCE)
 - When we call terraform plan or apply or destroy by using the --var
     $ terraform apply --var container_name=my_container
     We don't like this... and we don't want to use this...why?
@@ -67,14 +68,18 @@ We can do that in several places in terraform:
     BUT... there is a case where we want to use ^^^^ this option.
     We will use this option... if... we don't want that value to be stored anywhere.
         For example: PASSWORDS, SECRETS
-    
+
 - When we call terraform plan or apply or destroy by using the --var-file argument
     We wanto to keep these values in a file...
     And we want that file to be store in our git repo.
 
     $ terraform apply --var-file "myproduction.tfvars"
 
+- Files ending in ".auto.tfvars" are loaded automatically
+
 - Within a varable definirtion as a default value
  
 - In case a value is not provided thru any of the previous options...
   Terraform is going to ask for that
+
+- And if I don't supply a variable terraform is going to kill the execution

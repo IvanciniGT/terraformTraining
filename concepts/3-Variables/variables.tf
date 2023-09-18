@@ -29,7 +29,7 @@ variable "container_image_tag" {
 
 variable "start_container" {
     description = "Whether the container should be started upon creation"
-    type        = boolean 
+    type        = bool
 }
 
 variable "number_of_cores" {
