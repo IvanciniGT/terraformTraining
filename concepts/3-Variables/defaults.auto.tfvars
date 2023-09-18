@@ -1,5 +1,5 @@
 # This is the name of the container
-container_name              = "my_container_2"
+container_name              = "This configuration is not $$$OK$$$ ☕☕☕"
 container_image_repository  = "nginx"
 container_image_tag         = "latest"
 start_container             = true

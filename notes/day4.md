@@ -83,3 +83,14 @@ We can do that in several places in terraform:
   Terraform is going to ask for that
 
 - And if I don't supply a variable terraform is going to kill the execution
+- 
+---
+
+Maybe we are tring to create 10 servers
+And 7 of them were successfuly ccreated
+But the 8.. has an invalid name.
+And I will leave the production environment partially deployed
+^^^ Is that ok?
+
+So it is extremely important in terraform to make sure that values are ok, before actually proceeding
+That means we will need to add validations for each variable

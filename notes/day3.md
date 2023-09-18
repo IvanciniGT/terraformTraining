@@ -134,7 +134,9 @@ It is not a WorkFlow Chart... It is a dependency Chart
         property_name { // NO EQUALS CHAR
             aditional properties.. with their values... defined in the nested schema
         }
-
+- object        An object is like a map
+                But we define the allowed keys
+                And also... each key can have its own datataype
 
 ---
 Now that we did defined an ouput for the ip address of our container, we have it twice in the tf-state file.
