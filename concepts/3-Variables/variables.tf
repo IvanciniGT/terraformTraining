@@ -14,8 +14,11 @@ variable "container_name" {
     // We will NEVER... I mean NEEEEVERRRR!!!!! do this.
     // defaut is not meant for script variables.... forget about it.
     validation {
-        error_message = "The container name must only contain chars (both lower and capital), digits (0-9), and an underscore (_)"
-        condition     = # We are going to supply an expression returning a boolean
+        error_message = "The container name must only contain chars (both lower or capital), digits (0-9), or an underscore (_)"
+        condition     = length(regexall("^[a-zA-Z0-9_]+$", var.container_name )) == 1
+
+                        # Here we can write variables, operators: +-*/, and functions: https://developer.hashicorp.com/terraform/language/functions
+                        # We are going to supply an expression returning a boolean
                         # Case the expression return true, terraform will consider the value AS VALID
                         # Case the expression return false, terraform will mark the value AS INVALID
                         #   It will stop the execution and display the "error_message"
@@ -55,8 +58,10 @@ variable "number_of_cores" {
         # Or the special value: null
     # This doesn't mean that the variable could remain empty
     validation {
-        error_message = "The container name must only contain chars (both lower and capital), digits (0-9), and an underscore (_)"
-        condition     = 
+        error_message = "The number of cores must be greater than 0"
+        condition     = var.number_of_cores == null ? true : var.number_of_cores > 0
+                        // We wrote a conditional
+                        // condition ? value if condition is true : value if condition is false
     }
     
 }
@@ -133,8 +138,23 @@ variable "ports" {
                 ip = string
                 internal = number
             }))
+            
     validation {
-        error_message = "The container name must only contain chars (both lower and capital), digits (0-9), and an underscore (_)"
-        condition     = 
+        error_message = "The internal port must be between 1 and 32000"
+        condition     = alltrue(
+                            [ for port in var.ports: 
+                                port.internal > 0 && port.internal <= 32000 ]
+                        )
+                    # What this returns? Is this returning a boolean?
+
+    }
+    validation {
+        error_message = "You should provide a valid IP address"
+        condition     = alltrue(
+                            [ for port in var.ports: 
+                                length(regexall("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", port.ip )) == 1
+                            ]
+                        )
+                    # What this returns? Is this returning a boolean?
     }
 }

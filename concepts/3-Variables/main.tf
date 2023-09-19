@@ -15,7 +15,7 @@ resource "docker_container" "my_container" {
     name  = var.container_name                      # "my-nginx-terraform"
     image = docker_image.my_image.image_id
     start       = var.start_container               # true
-    cpu_shares  = var.number_of_cores
+    cpu_shares  = var.number_of_cores 
         # null is a special keyword (actually a special VALUE)
         # If a property has null value
         # Terraform is not going to supply the property to the provider
