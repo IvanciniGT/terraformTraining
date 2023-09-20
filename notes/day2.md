@@ -50,7 +50,7 @@ virtual network
 $ terraform VERB
 
 - init          This is going to DOWNLOAD providers
-                and... one more thing i will let you know next week
+                and... is going to download modules
 - validate      Is going to validate my script (the folder... and its content)
 - plan          Is going to calculate the tasks that need to be done
 - apply         Is going to execute those tasks
