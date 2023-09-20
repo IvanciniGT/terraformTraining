@@ -34,3 +34,13 @@ variable "more_cutomizable_containers" {
                                 external = number
                             }))
 }
+# This is way more flexible that the previous 
+# If this solution fits your requirements... just go head.
+# This is a perfect solution
+variable "more_cutomizable_containers_2" {
+    type        = list(object({
+                                name     = string 
+                                internal = number
+                                external = number
+                            }))
+}
