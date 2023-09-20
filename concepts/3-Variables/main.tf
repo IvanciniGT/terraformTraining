@@ -25,7 +25,7 @@ resource "docker_container" "my_container" {
                 # In this case, we need to transform our map(string) -> set(string)
     
     dynamic "ports" { 
-        for_each = var.ports #(set)
+        for_each = var.ports #(set or a list)
         iterator = port
         content {
             internal    = port.value["internal"]
