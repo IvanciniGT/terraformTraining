@@ -33,7 +33,7 @@ resource "docker_container" "my_container" {
                                     // If 1 container uses port 8080 of the host
                                     // a second container is going to be able to open that same port in the host? NO
     }
-}
+} 
 # As we are using the for_each attribute
 # This variable: docker_container.my_simple_custom_containers
 # does not point to a LIST of containers
